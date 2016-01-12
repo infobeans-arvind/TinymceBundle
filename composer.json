@@ -1,5 +1,5 @@
 {
-    "name": "infobeans-arvind/tinymce-bundle",
+    "name": "stfalcon/tinymce-bundle",
     "description": "This Bundle integrates TinyMCE WYSIWYG editor into a Symfony2 project.",
     "keywords": ["wysiwyg", "tinymce", "editor"],
     "type": "symfony-bundle",
