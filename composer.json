@@ -17,7 +17,7 @@
         },
         {
             "name":     "Symfony Community",
-            "homepage": "https://github.com/infobeans-arvind/TinymceBundle/contributors"
+            "homepage": "https://github.com/stfalcon/TinymceBundle/contributors"
         }        
     ],
     "require": {
