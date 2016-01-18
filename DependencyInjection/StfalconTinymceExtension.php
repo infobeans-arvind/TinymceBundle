@@ -21,26 +21,28 @@ class StfalconTinymceExtension extends Extension
     public function load(array $configs, ContainerBuilder $container)
     {
         // Get default configuration of the bundle
-        $config = $this->processConfiguration(new Configuration(), $configs);
+        $configuration = $this->processConfiguration(new Configuration(), $configs);
 
-        if (empty($config['theme'])) {
-            $config['theme'] = array(
-                'simple' => array(),
-            );
-        } else {
-            foreach ($config['theme'] as &$bundleTheme) {
-                // Quick fix for the removed obsolete themes
-                if (isset($bundleTheme['theme']) && in_array($bundleTheme['theme'], array('advanced', 'simple'))) {
-                    $bundleTheme['theme'] = 'modern';
+        foreach($configuration['configuration'] as &$config){
+            if (empty($config['theme'])) {
+                $config['theme'] = array(
+                    'simple' => array()
+                );
+            } else {
+                foreach ($config['theme'] as &$bundleTheme) {
+                    // Quick fix for the removed obsolete themes
+                    if (isset($bundleTheme['theme']) && in_array($bundleTheme['theme'], array('advanced', 'simple'))) {
+                        $bundleTheme['theme'] = 'modern';
+                    }
+                    unset($bundleTheme);
                 }
-                unset($bundleTheme);
             }
         }
 
-        $container->setParameter('stfalcon_tinymce.config', $config);
+        $container->setParameter('stfalcon_tinymce.config', $configuration);
 
         // load dependency injection config
-        $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('service.xml');
     }
 
